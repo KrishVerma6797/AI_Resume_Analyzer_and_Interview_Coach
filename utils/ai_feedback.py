@@ -1,10 +1,13 @@
+import streamlit as st
 import google.generativeai as genai
 
-from dotenv import load_dotenv
-import os
-load_dotenv(dotenv_path=".env")
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model=genai.GenerativeModel("gemini-2.5-flash")
+genai.configure(
+    api_key=st.secrets["GEMINI_API_KEY"]
+)
+
+model = genai.GenerativeModel(
+    "gemini-2.5-flash"
+)
 
 def gen_feedback(resume_text,jd_text):
     prompt = f"""
